@@ -1,0 +1,247 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Premium Birthday Celebration Design System */
+
+@layer base {
+  :root {
+    /* Core Semantic Colors */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 8%;
+
+    /* Luxury Color Palette */
+    --luxury-gold: 45 100% 51%;
+    --luxury-gold-light: 48 100% 67%;
+    --luxury-gold-dark: 42 100% 35%;
+    
+    --royal-blue: 217 100% 20%;
+    --royal-blue-light: 217 100% 35%;
+    --royal-blue-dark: 217 100% 12%;
+    
+    --deep-maroon: 350 100% 25%;
+    --deep-maroon-light: 350 100% 40%;
+    --deep-maroon-dark: 350 100% 15%;
+    
+    --premium-white: 0 0% 98%;
+    --soft-cream: 45 25% 95%;
+    
+    /* Gradient Definitions */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--luxury-gold)) 0%, hsl(var(--royal-blue)) 100%);
+    --gradient-luxury: linear-gradient(45deg, hsl(var(--luxury-gold-light)) 0%, hsl(var(--luxury-gold)) 50%, hsl(var(--deep-maroon)) 100%);
+    --gradient-celebration: linear-gradient(180deg, hsl(var(--soft-cream)) 0%, hsl(var(--premium-white)) 100%);
+    --gradient-glow: radial-gradient(circle, hsl(var(--luxury-gold) / 0.3) 0%, transparent 70%);
+    
+    /* Shadows & Effects */
+    --shadow-luxury: 0 20px 60px -10px hsl(var(--luxury-gold) / 0.3);
+    --shadow-royal: 0 15px 40px -8px hsl(var(--royal-blue) / 0.4);
+    --shadow-glow: 0 0 40px hsl(var(--luxury-gold) / 0.6);
+    --shadow-premium: 0 25px 80px -15px hsl(var(--deep-maroon) / 0.3);
+    
+    /* Animation Timings */
+    --transition-luxury: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* Standard System Colors (shadcn compatibility) */
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: var(--luxury-gold);
+    --primary-foreground: 0 0% 8%;
+    --secondary: var(--soft-cream);
+    --secondary-foreground: var(--royal-blue);
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: var(--deep-maroon);
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: var(--luxury-gold);
+    --radius: 1rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: var(--luxury-gold-light);
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: var(--deep-maroon-light);
+    --accent-foreground: 210 40% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-montserrat;
+    overflow-x: hidden;
+  }
+  
+  /* Premium Typography Styles */
+  .font-playfair {
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+  }
+}
+
+@layer components {
+  /* Luxury Button Variants */
+  .btn-luxury {
+    @apply relative px-8 py-4 font-montserrat font-medium text-white;
+    background: var(--gradient-luxury);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-luxury);
+    transition: var(--transition-luxury);
+    overflow: hidden;
+  }
+  
+  .btn-luxury::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: var(--transition-smooth);
+  }
+  
+  .btn-luxury:hover::before {
+    left: 100%;
+  }
+  
+  .btn-luxury:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+  }
+  
+  /* Royal Button Variant */
+  .btn-royal {
+    @apply relative px-6 py-3 font-montserrat font-medium text-white bg-royal-blue;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-royal);
+    transition: var(--transition-smooth);
+  }
+  
+  .btn-royal:hover {
+    @apply bg-royal-blue-light;
+    transform: translateY(-1px);
+  }
+  
+  /* Celebration Card Styles */
+  .card-celebration {
+    @apply relative p-8 rounded-2xl;
+    background: var(--gradient-celebration);
+    box-shadow: var(--shadow-premium);
+    border: 1px solid hsl(var(--luxury-gold) / 0.2);
+    transition: var(--transition-luxury);
+  }
+  
+  .card-celebration:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-glow);
+  }
+  
+  /* Glowing Text Effect */
+  .text-glow {
+    text-shadow: 0 0 20px hsl(var(--luxury-gold) / 0.8);
+  }
+  
+  /* Premium Gradient Text */
+  .text-gradient {
+    background: var(--gradient-luxury);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  /* Animated Background Particles */
+  .particles-background {
+    background: radial-gradient(circle at 20% 80%, hsl(var(--luxury-gold) / 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, hsl(var(--royal-blue) / 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, hsl(var(--deep-maroon) / 0.1) 0%, transparent 50%);
+  }
+}
+
+@layer utilities {
+  /* Animation Keyframes */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  @keyframes sparkle {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.8); }
+  }
+  
+  @keyframes slideInFromLeft {
+    0% { opacity: 0; transform: translateX(-100px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+  
+  @keyframes slideInFromRight {
+    0% { opacity: 0; transform: translateX(100px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+  
+  @keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(60px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    14% { transform: scale(1.1); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.1); }
+    70% { transform: scale(1); }
+  }
+
+  /* Animation Classes */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .animate-sparkle {
+    animation: sparkle 2s ease-in-out infinite;
+  }
+  
+  .animate-slide-left {
+    animation: slideInFromLeft 0.8s ease-out;
+  }
+  
+  .animate-slide-right {
+    animation: slideInFromRight 0.8s ease-out;
+  }
+  
+  .animate-fade-up {
+    animation: fadeInUp 0.6s ease-out;
+  }
+  
+  .animate-heartbeat {
+    animation: heartbeat 2s ease-in-out infinite;
+  }
+}
